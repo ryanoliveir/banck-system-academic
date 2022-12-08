@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.ino": "cpp",
+        "*.py": "python",
+        "iostream": "cpp",
+        "string": "cpp"
+    }
+}

@@ -16,6 +16,12 @@ ContaCorrente::ContaCorrente(std::string numero, float saldo){
         std::cout << "Building object..." << std::endl;
 }
 
+ContaCorrente::ContaCorrente(std::string numero){
+        this->numero = numero;
+        
+        // std::cout << "Building object..." << std::endl;
+}
+
 float ContaCorrente::calculaCusto(){
         return this->saldo * 0.05;
 }

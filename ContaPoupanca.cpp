@@ -9,6 +9,13 @@ ContaPoupanca::ContaPoupanca(std::string numero, float saldo){
         std::cout << "Building object..." << std::endl;
 }
 
+
+ContaPoupanca::ContaPoupanca(std::string numero){
+        this->numero = numero;
+        std::cout << "Building object..." << std::endl;
+}
+
+
 float ContaPoupanca::calculaCusto(){
         return 10;
 }

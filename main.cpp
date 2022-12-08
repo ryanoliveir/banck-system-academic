@@ -1,12 +1,31 @@
 #include <iostream>
 #include <string> 
 #include <vector>
+#include <cstdlib>
+#include <time.h>
 #include "Cliente.hpp"
 #include "Conta.hpp"
 #include "ContaCorrente.hpp"
 #include "ContaPoupanca.hpp"
 
 using namespace std;
+
+string accountNumberGenerator (){
+    
+    string accountNumber = "";
+    int number;
+
+    srand(time(0));
+
+    
+    for (int i = 0; i < 7; i++){
+        number = rand() % (10 + 1) + 1;
+        accountNumber += to_string(number);
+        // cout << number << endl;
+    }
+
+    return accountNumber;
+}
 
 int main(){
 
@@ -15,7 +34,8 @@ int main(){
     string nome;
 
     string option;
-
+    string type;
+    
     do{
 
         cout << "# Cadastro e Consulta de Clientes # " << endl;
@@ -31,7 +51,10 @@ int main(){
             cout << "\n#Consulta#\n" << endl;
             if(clientes.size()){
                 for (int i = 0 ; i < clientes.size(); i++){
-                    cout << "[CLIENT] " << clientes[i].getNome() << "\n" << endl;
+                
+
+                    cout << "[CLIENT] " << clientes[i].getNome() << endl;
+                    cout << "[ACCOUNT NUMBER] " << clientes[i].getConta().getNumero() << "\n" << endl;
                 }
                 continue;
             }
@@ -49,10 +72,28 @@ int main(){
              _flushall();
              cin >> cpf;
              
-             Cliente cliente(cpf,nome);
+            cout << "[*] Tipo de conta: " << endl;
+            cout << " #1 Corrente" << endl;
+            cout << " #2 Poupanca" << endl;
+            cout << "> ";
+             _flushall();
+            cin >> type;
 
-             clientes.push_back(cliente);
-             cout << "[+] Cadastrado \n" << endl;
+            if(type == "1"){
+                ContaCorrente conta(accountNumberGenerator());
+                Cliente cliente(cpf,nome, conta);
+                clientes.push_back(cliente);
+            } else {
+                ContaPoupanca conta(accountNumberGenerator());
+                Cliente cliente(cpf,nome, conta);
+                clientes.push_back(cliente);
+            }
+            
+        
+            
+            cout << "[+] Cadastrado \n" << endl;
+
+             
              
         }else if(option == "3"){
             cout << "Saindo..." << endl;

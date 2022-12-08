@@ -10,6 +10,7 @@ class Conta {
     
     public:
         Conta(std::string numero, float saldo);
+        Conta(std::string numero);
         Conta();
         void setNumero(std::string numero);
         void setSaldo(float saldo);
